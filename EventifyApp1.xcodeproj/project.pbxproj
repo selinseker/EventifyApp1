@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1857C4892BB863E5005C73EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C4882BB863E5005C73EB /* FeedViewController.swift */; };
+		1857C48B2BB8640C005C73EB /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C48A2BB8640C005C73EB /* UploadViewController.swift */; };
+		1857C48D2BB8642B005C73EB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C48C2BB8642B005C73EB /* SettingsViewController.swift */; };
+		1860B62B2BB70EE4002D4784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1860B62A2BB70EE4002D4784 /* GoogleService-Info.plist */; };
 		18F1639E2BB4B92500B7CEC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1639D2BB4B92500B7CEC8 /* AppDelegate.swift */; };
 		18F163A02BB4B92500B7CEC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1639F2BB4B92500B7CEC8 /* SceneDelegate.swift */; };
 		18F163A22BB4B92500B7CEC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F163A12BB4B92500B7CEC8 /* ViewController.swift */; };
@@ -14,9 +18,14 @@
 		18F163A82BB4B92500B7CEC8 /* EventifyApp1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18F163A62BB4B92500B7CEC8 /* EventifyApp1.xcdatamodeld */; };
 		18F163AA2BB4B92600B7CEC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F163A92BB4B92600B7CEC8 /* Assets.xcassets */; };
 		18F163AD2BB4B92600B7CEC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F163AB2BB4B92600B7CEC8 /* LaunchScreen.storyboard */; };
+		EDED05171B9AB012A2EE4A1B /* Pods_EventifyApp1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB7D3BD59D509C7A82C7DF0 /* Pods_EventifyApp1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1857C4882BB863E5005C73EB /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		1857C48A2BB8640C005C73EB /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		1857C48C2BB8642B005C73EB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1860B62A2BB70EE4002D4784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18F1639A2BB4B92500B7CEC8 /* EventifyApp1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventifyApp1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F1639D2BB4B92500B7CEC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F1639F2BB4B92500B7CEC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +35,9 @@
 		18F163A92BB4B92600B7CEC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F163AC2BB4B92600B7CEC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F163AE2BB4B92600B7CEC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB08BC35867801B21DBBC542 /* Pods-EventifyApp1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventifyApp1.release.xcconfig"; path = "Target Support Files/Pods-EventifyApp1/Pods-EventifyApp1.release.xcconfig"; sourceTree = "<group>"; };
+		BDB7D3BD59D509C7A82C7DF0 /* Pods_EventifyApp1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventifyApp1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2BE416D609ACCB558261464 /* Pods-EventifyApp1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventifyApp1.debug.xcconfig"; path = "Target Support Files/Pods-EventifyApp1/Pods-EventifyApp1.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDED05171B9AB012A2EE4A1B /* Pods_EventifyApp1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +57,8 @@
 			children = (
 				18F1639C2BB4B92500B7CEC8 /* EventifyApp1 */,
 				18F1639B2BB4B92500B7CEC8 /* Products */,
+				DCCC39177AB42B90E699D2FA /* Pods */,
+				55489EFD14439F7128902577 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,13 +76,34 @@
 				18F1639D2BB4B92500B7CEC8 /* AppDelegate.swift */,
 				18F1639F2BB4B92500B7CEC8 /* SceneDelegate.swift */,
 				18F163A12BB4B92500B7CEC8 /* ViewController.swift */,
+				1857C4882BB863E5005C73EB /* FeedViewController.swift */,
+				1857C48A2BB8640C005C73EB /* UploadViewController.swift */,
+				1857C48C2BB8642B005C73EB /* SettingsViewController.swift */,
 				18F163A32BB4B92500B7CEC8 /* Main.storyboard */,
 				18F163A92BB4B92600B7CEC8 /* Assets.xcassets */,
 				18F163AB2BB4B92600B7CEC8 /* LaunchScreen.storyboard */,
 				18F163AE2BB4B92600B7CEC8 /* Info.plist */,
+				1860B62A2BB70EE4002D4784 /* GoogleService-Info.plist */,
 				18F163A62BB4B92500B7CEC8 /* EventifyApp1.xcdatamodeld */,
 			);
 			path = EventifyApp1;
+			sourceTree = "<group>";
+		};
+		55489EFD14439F7128902577 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDB7D3BD59D509C7A82C7DF0 /* Pods_EventifyApp1.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCCC39177AB42B90E699D2FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2BE416D609ACCB558261464 /* Pods-EventifyApp1.debug.xcconfig */,
+				AB08BC35867801B21DBBC542 /* Pods-EventifyApp1.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18F163B12BB4B92600B7CEC8 /* Build configuration list for PBXNativeTarget "EventifyApp1" */;
 			buildPhases = (
+				12DBBAB510D3A2654940D8D1 /* [CP] Check Pods Manifest.lock */,
 				18F163962BB4B92500B7CEC8 /* Sources */,
 				18F163972BB4B92500B7CEC8 /* Frameworks */,
 				18F163982BB4B92500B7CEC8 /* Resources */,
+				80D52E6CDD069551018A96DA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F163AD2BB4B92600B7CEC8 /* LaunchScreen.storyboard in Resources */,
+				1860B62B2BB70EE4002D4784 /* GoogleService-Info.plist in Resources */,
 				18F163AA2BB4B92600B7CEC8 /* Assets.xcassets in Resources */,
 				18F163A52BB4B92500B7CEC8 /* Main.storyboard in Resources */,
 			);
@@ -136,13 +175,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		12DBBAB510D3A2654940D8D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EventifyApp1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80D52E6CDD069551018A96DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EventifyApp1/Pods-EventifyApp1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EventifyApp1/Pods-EventifyApp1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EventifyApp1/Pods-EventifyApp1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		18F163962BB4B92500B7CEC8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				18F163A22BB4B92500B7CEC8 /* ViewController.swift in Sources */,
+				1857C48B2BB8640C005C73EB /* UploadViewController.swift in Sources */,
+				1857C48D2BB8642B005C73EB /* SettingsViewController.swift in Sources */,
 				18F163A82BB4B92500B7CEC8 /* EventifyApp1.xcdatamodeld in Sources */,
+				1857C4892BB863E5005C73EB /* FeedViewController.swift in Sources */,
 				18F1639E2BB4B92500B7CEC8 /* AppDelegate.swift in Sources */,
 				18F163A02BB4B92500B7CEC8 /* SceneDelegate.swift in Sources */,
 			);
@@ -291,11 +375,13 @@
 		};
 		18F163B22BB4B92600B7CEC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2BE416D609ACCB558261464 /* Pods-EventifyApp1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventifyApp1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -318,11 +404,13 @@
 		};
 		18F163B32BB4B92600B7CEC8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB08BC35867801B21DBBC542 /* Pods-EventifyApp1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventifyApp1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

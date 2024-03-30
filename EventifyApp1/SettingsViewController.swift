@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +17,21 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    
+    @IBAction func logoutTiklandi(_ sender: Any) {
+        
+        
+        do{
+            try Auth.auth().signOut()
+        } catch{
+            print("Hata")
+        }
+        
+        
+        performSegue(withIdentifier: "toFirstViewController", sender: nil)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
