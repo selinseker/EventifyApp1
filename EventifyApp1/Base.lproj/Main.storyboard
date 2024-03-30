@@ -132,14 +132,56 @@
                     <view key="view" contentMode="scaleToFill" id="WYr-4k-E0P">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.rectangle.on.folder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9QQ-6o-R7E">
+                                <rect key="frame" x="76" y="178" width="240" height="215"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Yorum giriniz" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Slp-Nc-9WG">
+                                <rect key="frame" x="76" y="442" width="240" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="hIU-gg-Lbn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8WY-EU-HLQ">
+                                <rect key="frame" x="145" y="502" width="102" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="ZiY-KL-wEY"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Upload">
+                                    <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="imageUploadTiklandi:" destination="gfw-HL-hIa" eventType="touchUpInside" id="tZh-0c-eIY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="buU-Hj-Abh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9QQ-6o-R7E" firstAttribute="leading" secondItem="buU-Hj-Abh" secondAttribute="leading" constant="76" id="4mj-s6-1tI"/>
+                            <constraint firstItem="buU-Hj-Abh" firstAttribute="trailing" secondItem="9QQ-6o-R7E" secondAttribute="trailing" constant="78.333333333333314" id="F7T-xM-gu4"/>
+                            <constraint firstItem="9QQ-6o-R7E" firstAttribute="centerX" secondItem="Slp-Nc-9WG" secondAttribute="centerX" id="IR3-dt-s1d"/>
+                            <constraint firstItem="Slp-Nc-9WG" firstAttribute="top" secondItem="9QQ-6o-R7E" secondAttribute="bottom" constant="47.666666666666629" id="IyR-WP-aFR"/>
+                            <constraint firstItem="9QQ-6o-R7E" firstAttribute="top" secondItem="buU-Hj-Abh" secondAttribute="top" constant="177.33333333333334" id="RKt-Lx-HJd"/>
+                            <constraint firstItem="8WY-EU-HLQ" firstAttribute="top" secondItem="Slp-Nc-9WG" secondAttribute="bottom" constant="26" id="ZJ2-Zn-72i"/>
+                            <constraint firstItem="buU-Hj-Abh" firstAttribute="bottom" secondItem="8WY-EU-HLQ" secondAttribute="bottom" constant="263" id="kJJ-Yv-Mzx"/>
+                            <constraint firstItem="9QQ-6o-R7E" firstAttribute="leading" secondItem="Slp-Nc-9WG" secondAttribute="leading" id="oqG-b0-CNV"/>
+                            <constraint firstItem="8WY-EU-HLQ" firstAttribute="leading" secondItem="buU-Hj-Abh" secondAttribute="leading" constant="145" id="ufN-nr-StH"/>
+                            <constraint firstItem="Slp-Nc-9WG" firstAttribute="centerX" secondItem="8WY-EU-HLQ" secondAttribute="centerX" id="vSW-zZ-18D"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Upload" image="square.and.arrow.up" catalog="system" id="Q2s-4Y-6xC"/>
+                    <connections>
+                        <outlet property="imageView" destination="9QQ-6o-R7E" id="gco-pM-12f"/>
+                        <outlet property="yorumTextField" destination="Slp-Nc-9WG" id="pyc-yH-DPM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QP2-Xk-t1g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="361"/>
+            <point key="canvasLocation" x="1223.6641221374045" y="360.56338028169017"/>
         </scene>
         <!--Feed-->
         <scene sceneID="01A-G4-qAe">
@@ -181,9 +223,13 @@
     <resources>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="plus.rectangle.on.folder" catalog="system" width="128" height="95"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
