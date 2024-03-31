@@ -10,6 +10,8 @@ import Photos
 import PhotosUI
 import FirebaseCore
 import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 let uuid = UUID().uuidString
 
@@ -71,6 +73,20 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                         if error == nil{
                             let imageUrl = url?.absoluteString
                             print(imageUrl ?? "defaultvalue")
+                            
+                            if let imageUrl = imageUrl{
+                                let firestoreDatabase = Firestore.firestore()
+                               
+                                let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
+                                
+                                firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
+                                    if error != nil{
+                                        self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
+                                    }
+                                }
+                            
+                            }
+                            
                         }
                     }
                 }
