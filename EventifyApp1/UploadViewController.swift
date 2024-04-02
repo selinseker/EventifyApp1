@@ -82,6 +82,11 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                                 firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
                                     if error != nil{
                                         self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
+                                    }else{
+                                        
+                                        self.yorumTextField.text = ""
+                                        self.imageView.image = UIImage(named: "ekle" )
+                                        self.tabBarController?.selectedIndex = 0
                                     }
                                 }
                             
