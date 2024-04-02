@@ -1,5 +1,6 @@
 import UIKit
 import FirebaseFirestore
+import SDWebImage
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -13,10 +14,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+      
         firebaseVerileriAl()
         
-        
+    
         feedTableView.delegate = self
         feedTableView.dataSource = self
     }
@@ -29,6 +30,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.hataMesaji(title: "Hata", message: error?.localizedDescription ?? "Hata oluştu.")
             } else {
                 if snapshot?.isEmpty != true && snapshot != nil{
+                    
+                    self.usernameDizisi.removeAll(keepingCapacity: false)
+                    self.gorselDizisi.removeAll(keepingCapacity: false)
+                    self.yorumDizisi.removeAll(keepingCapacity: false)
+                    
                     for document in snapshot!.documents{
                         if let username = document.get("username") as? String{
                             self.usernameDizisi.append(username)
@@ -44,8 +50,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 } else{
                     if snapshot?.isEmpty != true && snapshot != nil {
                         for document in snapshot!.documents {
-                            if let gorselUrl = document.get("gorselUrl") as? String{
-                                self.gorselDizisi.append(gorselUrl)
+                            if let gorselurl = document.get("gorselurl") as? String{
+                                self.gorselDizisi.append(gorselurl)
                             }
                             if let yorum = document.get("yorum") as? String{
                                 self.yorumDizisi.append(yorum)
@@ -54,6 +60,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         }
                         DispatchQueue.main.async {
                             self.feedTableView.reloadData()
+                            
                         }
                     }
                 }
@@ -62,14 +69,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usernameDizisi.count
+
+        return min(yorumDizisi.count, usernameDizisi.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.YorumText.text = yorumDizisi[indexPath.row]
         cell.feedUsernameField.text = usernameDizisi[indexPath.row]
-        cell.postImageView.image = UIImage(named: "ekle")
+        cell.postImageView.sd_setImage(with: URL(string: self.gorselDizisi[indexPath.row]))
         return cell
     }
     
