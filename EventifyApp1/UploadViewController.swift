@@ -71,17 +71,22 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                 } else{
                     imageReference.downloadURL { url, error in
                         if error == nil{
-                            let imageUrl = url?.absoluteString
-                            print(imageUrl ?? "defaultvalue")
+                            let imageurl = url?.absoluteString
+                            print(imageurl ?? "defaultvalue")
                             
-                            if let imageUrl = imageUrl{
+                            if let imageurl = imageurl{
                                 let firestoreDatabase = Firestore.firestore()
                                
-                                let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
+                                let firestorePost = ["gorselurl": imageurl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
                                 
                                 firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
                                     if error != nil{
                                         self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
+                                    }else{
+                                        
+                                        self.yorumTextField.text = ""
+                                        self.imageView.image = UIImage(named: "ekle" )
+                                        self.tabBarController?.selectedIndex = 0
                                     }
                                 }
                             
