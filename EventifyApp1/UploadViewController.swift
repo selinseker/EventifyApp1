@@ -56,42 +56,45 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         
     }
     
-    @IBAction func imageUploadTiklandi(_ sender: Any){
-        
+    @IBAction func imageUploadTiklandi(_ sender: Any) {
         let storage = Storage.storage()
         let storageReferance = storage.reference()
-        
         let mediaFolder = storageReferance.child("media")
         
-        if let data = imageView.image?.jpegData(compressionQuality: 0.5){
+        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
             let imageReference = mediaFolder.child("\(uuid).jpg")
             imageReference.putData(data, metadata: nil) { storagemetadata, error in
-                if error != nil{
+                if error != nil {
                     self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
-                } else{
+                } else {
                     imageReference.downloadURL { url, error in
-                        if error == nil{
-                            let imageurl = url?.absoluteString
-                            print(imageurl ?? "defaultvalue")
+                        if let imageURL = url?.absoluteString {
+                            print(imageURL)
                             
-                            if let imageurl = imageurl{
-                                let firestoreDatabase = Firestore.firestore()
-                               
-                                let firestorePost = ["gorselurl": imageurl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
+                            let firestoreDatabase = Firestore.firestore()
+                            if let currentUser = Auth.auth().currentUser {
+                                let firestorePost: [String: Any] = [
+                                    "gorselurl": imageURL,
+                                    "yorum": self.yorumTextField.text ?? "",
+                                    "email": currentUser.email ?? "",
+                                    "tarih": FieldValue.serverTimestamp(),
+                                    "uid": currentUser.uid
+                                ]
                                 
                                 firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
-                                    if error != nil{
+                                    if error != nil {
                                         self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
-                                    }else{
-                                        
+                                    } else {
                                         self.yorumTextField.text = ""
-                                        self.imageView.image = UIImage(named: "ekle" )
+                                        self.imageView.image = UIImage(named: "ekle")
                                         self.tabBarController?.selectedIndex = 0
                                     }
                                 }
-                            
+                            } else {
+                                print("Mevcut kullanıcı bulunamadı")
                             }
-                            
+                        } else {
+                            print("Görsel URL'si alınamadı")
                         }
                     }
                 }
