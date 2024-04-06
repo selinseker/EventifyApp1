@@ -48,6 +48,59 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if error != nil {
                     self.hataMesaji(title: "Hata", message: error?.localizedDescription ?? "Hata oluştu.")
                 } else{
+                    if snapshot?.isimport UIKit
+import FirebaseFirestore
+import SDWebImage
+
+
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var gorselDizisi = [String]()
+    var yorumDizisi = [String]()
+    var usernameDizisi = [String]()
+
+    
+    @IBOutlet weak var feedTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+      
+        firebaseVerileriAl()
+        
+        
+    
+        feedTableView.delegate = self
+        feedTableView.dataSource = self
+    }
+    
+    func firebaseVerileriAl(){
+        let firestoreDatabase = Firestore.firestore()
+        
+        firestoreDatabase.collection("Users").addSnapshotListener { snapshot, error in
+            if error != nil {
+                self.hataMesaji(title: "Hata", message: error?.localizedDescription ?? "Hata oluştu.")
+            } else {
+                if snapshot?.isEmpty != true && snapshot != nil{
+                    
+                    self.usernameDizisi.removeAll(keepingCapacity: false)
+                    self.gorselDizisi.removeAll(keepingCapacity: false)
+                    self.yorumDizisi.removeAll(keepingCapacity: false)
+                    
+                    for document in snapshot!.documents{
+                        if let username = document.get("username") as? String{
+                            self.usernameDizisi.append(username)
+                        }
+                        
+                    }
+                }
+            }
+            
+            
+            firestoreDatabase.collection("Post").addSnapshotListener { snapshot, error in
+                if error != nil {
+                    self.hataMesaji(title: "Hata", message: error?.localizedDescription ?? "Hata oluştu.")
+                } else{
                     if snapshot?.isEmpty != true && snapshot != nil {
                         for document in snapshot!.documents {
                             if let gorselurl = document.get("gorselurl") as? String{
@@ -68,9 +121,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return min(yorumDizisi.count, usernameDizisi.count)
+        return yorumDizisi.count
+     
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,4 +143,5 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
 }
