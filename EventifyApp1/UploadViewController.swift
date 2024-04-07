@@ -1,10 +1,3 @@
-//
-//  UploadViewController.swift
-//  EventifyApp1
-//
-//  Created by Selin Şeker on 30.03.2024.
-//
-
 import UIKit
 import Photos
 import PhotosUI
@@ -12,9 +5,7 @@ import FirebaseCore
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
-
 let uuid = UUID().uuidString
-
 class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak var yorumTextField: UITextField!
@@ -56,51 +47,50 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         
     }
     
-    @IBAction func imageUploadTiklandi(_ sender: Any) {
+    @IBAction func imageUploadTiklandi(_ sender: Any){
+        
         let storage = Storage.storage()
         let storageReferance = storage.reference()
+        
         let mediaFolder = storageReferance.child("media")
         
-        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
+        if let data = imageView.image?.jpegData(compressionQuality: 0.5){
             let imageReference = mediaFolder.child("\(uuid).jpg")
             imageReference.putData(data, metadata: nil) { storagemetadata, error in
-                if error != nil {
+                if error != nil{
                     self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
-                } else {
+                } else{
                     imageReference.downloadURL { url, error in
-                        if let imageURL = url?.absoluteString {
-                            print(imageURL)
+                        if error == nil{
+                            let imageUrl = url?.absoluteString
+                            print(imageUrl ?? "defaultvalue")
                             
-                            let firestoreDatabase = Firestore.firestore()
-                            if let currentUser = Auth.auth().currentUser {
-                                let firestorePost: [String: Any] = [
-                                    "gorselurl": imageURL,
-                                    "yorum": self.yorumTextField.text ?? "",
-                                    "email": currentUser.email ?? "",
-                                    "tarih": FieldValue.serverTimestamp(),
-                                    "uid": currentUser.uid
-                                ]
-                                
-                                firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
-                                    if error != nil {
-                                        self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
-                                    } else {
-                                        self.yorumTextField.text = ""
-                                        self.imageView.image = UIImage(named: "ekle")
-                                        self.tabBarController?.selectedIndex = 0
+                                if let imageUrl = imageUrl{
+                                    let firestoreDatabase = Firestore.firestore()
+                                    
+                                    let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
+
+                                    
+                                    firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
+                                        if error != nil{
+                                            self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
+                                        }else{
+                                            
+                                            self.yorumTextField.text = ""
+                                            self.imageView.image = UIImage(named: "ekle" )
+                                            self.tabBarController?.selectedIndex = 0
+                                        }
                                     }
+                                    
                                 }
-                            } else {
-                                print("Mevcut kullanıcı bulunamadı")
+                                
                             }
-                        } else {
-                            print("Görsel URL'si alınamadı")
                         }
                     }
                 }
             }
         }
-    }
+    
     
     func hataMesajiGoster(title: String,message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
