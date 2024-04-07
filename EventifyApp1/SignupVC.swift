@@ -56,6 +56,8 @@ class SignupVC: UIViewController {
                             self.emailTextField.text = ""
                             self.passwordTextField.text = ""
                             self.usernameTextField.text = ""
+                            
+                            
                             self.performSegue(withIdentifier: "signupToFeedVC", sender: nil)
                         }
                     }
