@@ -7,6 +7,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var gorselDizisi = [String]()
     var yorumDizisi = [String]()
+    var usernameDizisi = [String]()
    
 
     @IBOutlet weak var feedTableView: UITableView!
@@ -38,12 +39,35 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         if let yorum = document.get("yorum") as? String {
                             self.yorumDizisi.append(yorum)
                         }
+                        if let uid = document.get("uid") as? String {
+                            self.getUsernameForUID(uid)
+                        }
                        
                     }
                     DispatchQueue.main.async {
                          self.feedTableView.reloadData()
                                        }
                 }
+            }
+        }
+    }
+    
+    func getUsernameForUID(_ uid: String) {
+        let firestoreDatabase = Firestore.firestore()
+        firestoreDatabase.collection("Users").whereField("uid", isEqualTo: uid).getDocuments { snapshot, error in
+            if let error = error {
+                print("Hata oluştu: \(error.localizedDescription)")
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    if let username = document.get("username") as? String {
+                        self.usernameDizisi.append(username)
+                    }
+                }
+            } else {
+                print("Belge bulunamadı.")
             }
         }
     }
@@ -56,8 +80,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.YorumText.text = yorumDizisi[indexPath.row]
-
-
+        
+        if indexPath.row < usernameDizisi.count {
+                cell.feedUsernameField.text = usernameDizisi[indexPath.row]
+                } else {
+                    cell.feedUsernameField.text = ""
+                }
+        
         cell.postImageView.sd_setImage(with: URL(string: self.gorselDizisi[indexPath.row]))
         return cell
     }
@@ -69,4 +98,3 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(alert, animated: true, completion: nil)
     }
 }
-
