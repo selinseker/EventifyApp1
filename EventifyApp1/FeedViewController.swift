@@ -7,7 +7,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var gorselDizisi = [String]()
     var yorumDizisi = [String]()
-    var usernameDizisi = [String]()
+   
 
     @IBOutlet weak var feedTableView: UITableView!
 
@@ -29,7 +29,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let snapshot = snapshot, !snapshot.isEmpty {
                     self.gorselDizisi.removeAll()
                     self.yorumDizisi.removeAll()
-                    self.usernameDizisi.removeAll()
+                    
 
                     for document in snapshot.documents {
                         if let gorselurl = document.get("gorselurl") as? String {
@@ -38,34 +38,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         if let yorum = document.get("yorum") as? String {
                             self.yorumDizisi.append(yorum)
                         }
-                        if let uid = document.get("uid") as? String {
-                           
-                            self.getUsername(for: uid) { username in
-                                self.usernameDizisi.append(username)
-                                
-                                DispatchQueue.main.async {
-                                    self.feedTableView.reloadData()
-                                }
-                            }
-                        }
+                       
                     }
+                    DispatchQueue.main.async {
+                         self.feedTableView.reloadData()
+                                       }
                 }
             }
         }
     }
 
-    func getUsername(for uid: String, completion: @escaping (String) -> Void) {
-        let firestoreDatabase = Firestore.firestore()
-        firestoreDatabase.collection("users").document(uid).getDocument { document, error in
-            if let document = document, document.exists {
-                if let username = document.get("username") as? String {
-                    completion(username)
-                }
-            } else {
-                completion("")
-            }
-        }
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return yorumDizisi.count
@@ -75,11 +57,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.YorumText.text = yorumDizisi[indexPath.row]
 
-        if indexPath.row < usernameDizisi.count {
-            cell.feedUsernameField.text = usernameDizisi[indexPath.row]
-        } else {
-            cell.feedUsernameField.text = ""
-        }
 
         cell.postImageView.sd_setImage(with: URL(string: self.gorselDizisi[indexPath.row]))
         return cell
