@@ -10,6 +10,7 @@ pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseStorage'
 pod 'FirebaseMessaging'
+pod 'SDWebImage', '~> 5.0'
 
   # Pods for EventifyApp1
 

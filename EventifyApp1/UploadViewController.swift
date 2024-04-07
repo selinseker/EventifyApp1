@@ -1,10 +1,3 @@
-//
-//  UploadViewController.swift
-//  EventifyApp1
-//
-//  Created by Selin Şeker on 30.03.2024.
-//
-
 import UIKit
 import Photos
 import PhotosUI
@@ -12,9 +5,7 @@ import FirebaseCore
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
-
 let uuid = UUID().uuidString
-
 class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak var yorumTextField: UITextField!
@@ -74,30 +65,34 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                             let imageUrl = url?.absoluteString
                             print(imageUrl ?? "defaultvalue")
                             
-                            if let imageUrl = imageUrl{
-                                let firestoreDatabase = Firestore.firestore()
-                               
-                                let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
-                                
-                                firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
-                                    if error != nil{
-                                        self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
-                                    }else{
-                                        
-                                        self.yorumTextField.text = ""
-                                        self.imageView.image = UIImage(named: "ekle" )
-                                        self.tabBarController?.selectedIndex = 0
+                                if let imageUrl = imageUrl{
+                                    let firestoreDatabase = Firestore.firestore()
+                                    
+                                    let uid = Auth.auth().currentUser?.uid
+                                    
+                                    let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp(), "uid": uid ?? ""]
+
+                                    
+                                    firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
+                                        if error != nil{
+                                            self.hataMesajiGoster(title: "Hata", message: error?.localizedDescription ?? "Hata aldınız tekrar deneyiniz")
+                                        }else{
+                                            
+                                            self.yorumTextField.text = ""
+                                            self.imageView.image = UIImage(named: "ekle" )
+                                            self.tabBarController?.selectedIndex = 0
+                                        }
                                     }
+                                    
                                 }
-                            
+                                
                             }
-                            
                         }
                     }
                 }
             }
         }
-    }
+    
     
     func hataMesajiGoster(title: String,message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -105,4 +100,6 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
 }
