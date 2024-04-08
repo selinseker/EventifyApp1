@@ -36,7 +36,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if let gorselurl = document.get("gorselurl") as? String,
                        let yorum = document.get("yorum") as? String,
                        let uid = document.get("uid") as? String {
-                        self.getUsernameAndAddToFeedData(uid: uid, gorselurl: gorselurl, yorum: yorum)
+                       self.getUsernameAndAddToFeedData(uid: uid, gorselurl: gorselurl, yorum: yorum)
                     }
                 }
             }
@@ -71,19 +71,21 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
+        
         if indexPath.row < feedDataArray.count {
-            let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
             let feedData = feedDataArray[indexPath.row]
             cell.YorumText.text = feedData.yorum
             cell.feedUsernameField.text = feedData.username
             cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
-            return cell
         } else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            cell.textLabel?.text = "Hata: Veri Bulunamadı"
-            return cell
+            // Eğer indeks geçerli değilse varsayılan değerlerle hücreyi güncelle
+            cell.YorumText.text = ""
+            cell.feedUsernameField.text = ""
+            cell.postImageView.image = nil
         }
+        
+        return cell
     }
     
     func hataMesaji(title: String, message: String) {
