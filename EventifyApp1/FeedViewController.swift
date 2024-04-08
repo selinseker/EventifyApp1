@@ -7,6 +7,7 @@ struct FeedData {
     var username: String
     var yorum: String
     var gorselUrl: String
+    var uid: String 
 }
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -18,75 +19,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        firebaseVerileriAl()
         feedTableView.delegate = self
         feedTableView.dataSource = self
-    }
-
-    func firebaseVerileriAl() {
-        let firestoreDatabase = Firestore.firestore()
-
-        firestoreDatabase.collection("Post").addSnapshotListener { snapshot, error in
-            if let error = error {
-                self.hataMesaji(title: "Hata", message: error.localizedDescription)
-            } else if let snapshot = snapshot {
-                self.feedDataArray.removeAll()
-
-                for document in snapshot.documents {
-                    if let gorselurl = document.get("gorselurl") as? String,
-                       let yorum = document.get("yorum") as? String,
-                       let uid = document.get("uid") as? String {
-                       self.getUsernameAndAddToFeedData(uid: uid, gorselurl: gorselurl, yorum: yorum)
-                    }
-                }
-            }
-        }
-    }
-
-    func getUsernameAndAddToFeedData(uid: String, gorselurl: String, yorum: String) {
-        let firestoreDatabase = Firestore.firestore()
-
-        firestoreDatabase.collection("Users").document(uid).getDocument { document, error in
-            if let error = error {
-                print("Kullanıcı adı alınamadı: \(error.localizedDescription)")
-                return
-            }
-
-            if let document = document, document.exists {
-                if let username = document.get("username") as? String {
-                    let feedData = FeedData(username: username, yorum: yorum, gorselUrl: gorselurl)
-                    self.feedDataArray.append(feedData)
-                    DispatchQueue.main.async {
-                        self.feedTableView.reloadData()
-                    }
-                }
-            } else {
-                print("Belge bulunamadı.")
-            }
-        }
-    }import UIKit
-import FirebaseFirestore
-import FirebaseAuth
-import SDWebImage
-
-struct FeedData {
-    var username: String
-    var yorum: String
-    var gorselUrl: String
-}
-
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var feedDataArray = [FeedData]()
-
-    @IBOutlet weak var feedTableView: UITableView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
         firebaseVerileriAl()
-        feedTableView.delegate = self
-        feedTableView.dataSource = self
     }
 
     func firebaseVerileriAl() {
@@ -103,33 +38,42 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if let gorselurl = document.get("gorselurl") as? String,
                        let yorum = document.get("yorum") as? String,
                        let uid = document.get("uid") as? String {
-                       self.getUsernameAndAddToFeedData(uid: uid, gorselurl: gorselurl, yorum: yorum)
+                       let feedData = FeedData(username: "", yorum: yorum, gorselUrl: gorselurl, uid: uid) // Kullanıcı ID'sini feedData yapısına ekledik
+                       self.feedDataArray.append(feedData)
                     }
+                }
+
+                DispatchQueue.main.async {
+                    self.feedTableView.reloadData()
+                    // Verileri aldıktan sonra kullanıcı adlarını güncelle
+                    self.updateUsernames()
                 }
             }
         }
     }
 
-
-    func getUsernameAndAddToFeedData(uid: String, gorselurl: String, yorum: String) {
+    func updateUsernames() {
         let firestoreDatabase = Firestore.firestore()
 
-        firestoreDatabase.collection("Users").document(uid).getDocument { document, error in
-            if let error = error {
-                print("Kullanıcı adı alınamadı: \(error.localizedDescription)")
-                return
-            }
+        for (index, feedData) in feedDataArray.enumerated() {
+            let uid = feedData.uid // Kullanıcı ID'sini doğrudan feedData'dan al
 
-            if let document = document, document.exists {
-                if let username = document.get("username") as? String {
-                    let feedData = FeedData(username: username, yorum: yorum, gorselUrl: gorselurl)
-                    self.feedDataArray.append(feedData)
-                    DispatchQueue.main.async {
-                        self.feedTableView.reloadData()
-                    }
+            firestoreDatabase.collection("Users").document(uid).getDocument { document, error in
+                if let error = error {
+                    print("Kullanıcı adı alınamadı: \(error.localizedDescription)")
+                    return
                 }
-            } else {
-                print("Belge bulunamadı.")
+
+                if let document = document, document.exists {
+                    if let username = document.get("username") as? String {
+                        self.feedDataArray[index].username = username
+                        DispatchQueue.main.async {
+                            self.feedTableView.reloadData()
+                        }
+                    }
+                } else {
+                    print("Belge bulunamadı.")
+                }
             }
         }
     }
@@ -141,18 +85,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         
-        if indexPath.row < feedDataArray.count {
-            let feedData = feedDataArray[indexPath.row]
-            cell.YorumText.text = feedData.yorum
-            cell.feedUsernameField.text = feedData.username
-            cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
-        } else {
-            // Eğer indeks geçerli değilse varsayılan değerlerle hücreyi güncelle
-            cell.YorumText.text = ""
-            cell.feedUsernameField.text = ""
-            cell.postImageView.image = nil
-        }
-        
+        let feedData = feedDataArray[indexPath.row]
+        cell.YorumText.text = feedData.yorum
+        cell.feedUsernameField.text = feedData.username
+        cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
+
         return cell
     }
     
