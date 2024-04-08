@@ -68,7 +68,9 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                                 if let imageUrl = imageUrl{
                                     let firestoreDatabase = Firestore.firestore()
                                     
-                                    let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp()]
+                                    let uid = Auth.auth().currentUser?.uid
+                                    
+                                    let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp(), "uid": uid ?? ""]
 
                                     
                                     firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in
@@ -98,4 +100,6 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
 }
