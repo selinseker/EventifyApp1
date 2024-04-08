@@ -7,14 +7,15 @@ struct FeedData {
     var username: String
     var yorum: String
     var gorselUrl: String
-    var uid: String 
+    var uid: String
 }
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var feedTableView: UITableView!
     var feedDataArray = [FeedData]()
 
-    @IBOutlet weak var feedTableView: UITableView!
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedTableView.delegate = self
         feedTableView.dataSource = self
         firebaseVerileriAl()
+        
+        let headerHeight: CGFloat = 80 // Yeni header view yüksekliği
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight))
+
+        headerView.backgroundColor = UIColor(red: 15/255, green: 34/255, blue: 45/255, alpha: 1.0)
+        
+        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100)) // İstediğiniz boyutları ayarlayabilirsiniz
+        logoImageView.contentMode = .scaleAspectFit // Görselin boyutunu korumak için ölçekleme modunu ayarla
+        logoImageView.image = UIImage(named: "saydamLogo") // Görsel adınızı doğru şekilde belirtin
+        logoImageView.center = headerView.center // Görseli headerView'in merkezine yerleştir
+
+        
+        headerView.addSubview(logoImageView)
+
+        feedTableView.tableHeaderView = headerView
+
     }
 
     func firebaseVerileriAl() {
@@ -56,7 +73,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let firestoreDatabase = Firestore.firestore()
 
         for (index, feedData) in feedDataArray.enumerated() {
-            let uid = feedData.uid // Kullanıcı ID'sini doğrudan feedData'dan al
+            let uid = feedData.uid
 
             firestoreDatabase.collection("Users").document(uid).getDocument { document, error in
                 if let error = error {
