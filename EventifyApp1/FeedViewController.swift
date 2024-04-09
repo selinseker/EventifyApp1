@@ -24,15 +24,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         feedTableView.dataSource = self
         firebaseVerileriAl()
         
-        let headerHeight: CGFloat = 80 // Yeni header view yüksekliği
+        let headerHeight: CGFloat = 80
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight))
 
         headerView.backgroundColor = UIColor(red: 15/255, green: 34/255, blue: 45/255, alpha: 1.0)
         
-        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100)) // İstediğiniz boyutları ayarlayabilirsiniz
-        logoImageView.contentMode = .scaleAspectFit // Görselin boyutunu korumak için ölçekleme modunu ayarla
-        logoImageView.image = UIImage(named: "saydamLogo") // Görsel adınızı doğru şekilde belirtin
-        logoImageView.center = headerView.center // Görseli headerView'in merkezine yerleştir
+        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.image = UIImage(named: "saydamLogo")
+        logoImageView.center = headerView.center
 
         
         headerView.addSubview(logoImageView)
