@@ -22,11 +22,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         feedTableView.delegate = self
         feedTableView.dataSource = self
-        firebaseVerileriAl()
         
         self.feedTableView.register(UINib.init(nibName: "FeedCell", bundle: .main), forCellReuseIdentifier: "FeedCell")
         
         self.feedTableView.register(UINib.init(nibName: "FeedEtkinliklerSizeOzelCell", bundle: .main), forCellReuseIdentifier: "FeedEtkinliklerSizeOzelCell")
+        
+        firebaseVerileriAl()
         
        }
     
@@ -101,7 +102,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let cell:FeedCell = feedTableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
-            let feedData = feedDataArray[indexPath.row]
+            let feedData = feedDataArray[indexPath.row - 1]
             cell.YorumText.text = feedData.yorum
             cell.feedUsernameField.text = feedData.username
             cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
@@ -125,4 +126,5 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 }
+
 
