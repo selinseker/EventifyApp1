@@ -18,29 +18,47 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
   
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+           super.viewDidLoad()
 
-        feedTableView.delegate = self
-        feedTableView.dataSource = self
-        firebaseVerileriAl()
+           feedTableView.delegate = self
+           feedTableView.dataSource = self
+           firebaseVerileriAl()
+
+           let headerHeight: CGFloat = 135
+           let headerView = UIView(frame: CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight))
+
+           headerView.backgroundColor = UIColor(red: 15/255, green: 34/255, blue: 45/255, alpha: 1.0)
+
+           let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
+           logoImageView.contentMode = .scaleAspectFit
+           logoImageView.image = UIImage(named: "saydamLogo")
+           logoImageView.center = CGPoint(x: headerView.center.x, y: headerHeight * 0.4)
+           headerView.addSubview(logoImageView)
+
+           // Ayrı bölümün eklenmesi
+           let sectionView = UIView(frame: CGRect(x: 0, y: logoImageView.frame.maxY , width: headerView.frame.width, height: 20))
+
+           let etkinlikLabel = UILabel(frame: CGRect(x: 0, y: 0, width: sectionView.frame.width / 2, height: sectionView.frame.height))
+           etkinlikLabel.center.y = sectionView.frame.height / 2 - 15
+           etkinlikLabel.textAlignment = .center
+           etkinlikLabel.textColor = .white
+           etkinlikLabel.text = "Etkinlikler"
+           sectionView.addSubview(etkinlikLabel)
+
+           let ozelLabel = UILabel(frame: CGRect(x: sectionView.frame.width / 2, y: 0, width: sectionView.frame.width / 2, height: sectionView.frame.height))
+           ozelLabel.center.y = sectionView.frame.height / 2 - 15
+           ozelLabel.textAlignment = .center
+           ozelLabel.textColor = .white
+           ozelLabel.text = "Sana Özel"
+           sectionView.addSubview(ozelLabel)
+
+           headerView.addSubview(sectionView)
+
+           feedTableView.tableHeaderView = headerView
         
-        let headerHeight: CGFloat = 80
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight))
-
-        headerView.backgroundColor = UIColor(red: 15/255, green: 34/255, blue: 45/255, alpha: 1.0)
-        
-        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.image = UIImage(named: "saydamLogo")
-        logoImageView.center = headerView.center
-
-        
-        headerView.addSubview(logoImageView)
-
-        feedTableView.tableHeaderView = headerView
-
-    }
-
+       }
+    
+    
     func firebaseVerileriAl() {
         let firestoreDatabase = Firestore.firestore()
 
@@ -118,3 +136,4 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 }
+
