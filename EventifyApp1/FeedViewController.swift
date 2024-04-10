@@ -18,72 +18,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
   
 
     override func viewDidLoad() {
-           super.viewDidLoad()
+        super.viewDidLoad()
 
-           feedTableView.delegate = self
-           feedTableView.dataSource = self
-           firebaseVerileriAl()
-
-           let headerHeight: CGFloat = 135
-           let headerView = UIView(frame: CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight))
-
-           headerView.backgroundColor = UIColor(red: 15/255, green: 34/255, blue: 45/255, alpha: 1.0)
-
-           let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
-           logoImageView.contentMode = .scaleAspectFit
-           logoImageView.image = UIImage(named: "saydamLogo")
-           logoImageView.center = CGPoint(x: headerView.center.x, y: headerHeight * 0.4)
-           headerView.addSubview(logoImageView)
-
-           // Ayrı bölümün eklenmesi
-        let sectionView = UIView(frame: CGRect(x: 0, y: logoImageView.frame.maxY , width: headerView.frame.width, height: 20))
-
-        let etkinlikLabel = UILabel(frame: CGRect(x: 0, y: 0, width: sectionView.frame.width / 2, height: sectionView.frame.height))
-        etkinlikLabel.center.y = sectionView.frame.height / 2 - 15
-        etkinlikLabel.textAlignment = .center
-        etkinlikLabel.textColor = .white
-        etkinlikLabel.text = "Etkinlikler"
-        sectionView.addSubview(etkinlikLabel)
-
-        let ozelLabel = UILabel(frame: CGRect(x: sectionView.frame.width / 2, y: 0, width: sectionView.frame.width / 2, height: sectionView.frame.height))
-        ozelLabel.center.y = sectionView.frame.height / 2 - 15
-        ozelLabel.textAlignment = .center
-        ozelLabel.textColor = .white
-        ozelLabel.text = "Sana Özel"
-        sectionView.addSubview(ozelLabel)
-
-        headerView.addSubview(sectionView)
-
-        feedTableView.tableHeaderView = headerView
-
-        etkinlikLabel.isUserInteractionEnabled = true
-        let etkinlikTapGesture = UITapGestureRecognizer(target: self, action: #selector(etkinlikLabelTapped))
-        etkinlikLabel.addGestureRecognizer(etkinlikTapGesture)
-
-        ozelLabel.isUserInteractionEnabled = true
-        let ozelTapGesture = UITapGestureRecognizer(target: self, action: #selector(ozelLabelTapped))
-        ozelLabel.addGestureRecognizer(ozelTapGesture)
+        feedTableView.delegate = self
+        feedTableView.dataSource = self
+        firebaseVerileriAl()
+        
+        self.feedTableView.register(UINib.init(nibName: "FeedCell", bundle: .main), forCellReuseIdentifier: "FeedCell")
+        
+        self.feedTableView.register(UINib.init(nibName: "FeedEtkinliklerSizeOzelCell", bundle: .main), forCellReuseIdentifier: "FeedEtkinliklerSizeOzelCell")
         
        }
-    
-    @objc func etkinlikLabelTapped(){
-        print("etkinliklabel tıklandı")
-        if let sectionView = feedTableView.tableHeaderView?.subviews.first as? UIView {
-            // Burada sectionView kullanılabilir
-            if let etkinlikLabel = sectionView.subviews.first(where: { ($0 as? UILabel)?.text == "Etkinlikler" }) as? UILabel {
-                etkinlikLabel.backgroundColor = .yellow
-            }
-        }
-    }
-    
-    @objc func ozelLabelTapped(){
-        print("ozelLabel tıklandı")
-        if let sectionView = feedTableView.tableHeaderView,
-                  let ozelLabel = sectionView.subviews.first(where: { ($0 as? UILabel)?.text == "Sana Özel" }) as? UILabel {
-                   ozelLabel.backgroundColor = .yellow
-               }
-        
-    }
     
     
     func firebaseVerileriAl() {
@@ -145,14 +90,31 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         
-        let feedData = feedDataArray[indexPath.row]
-        cell.YorumText.text = feedData.yorum
-        cell.feedUsernameField.text = feedData.username
-        cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
+        if (indexPath.row == 0){
+            let cell:FeedEtkinliklerSizeOzelCell = feedTableView.dequeueReusableCell(withIdentifier: "FeedEtkinliklerSizeOzelCell", for: indexPath) as! FeedEtkinliklerSizeOzelCell
+            
+            cell.selectionStyle = .none
+            return cell
+            
+        }else{
+            
+            let cell:FeedCell = feedTableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        
+            let feedData = feedDataArray[indexPath.row]
+            cell.YorumText.text = feedData.yorum
+            cell.feedUsernameField.text = feedData.username
+            cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
+            
+            cell.view.layer.cornerRadius = 10
+            cell.view?.clipsToBounds = true
+            
+            
+             
+            cell.selectionStyle = .none
 
-        return cell
+            return cell
+         }
     }
     
     func hataMesaji(title: String, message: String) {
@@ -163,3 +125,4 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 }
+
