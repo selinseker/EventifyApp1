@@ -16,7 +16,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var feedDataArray = [FeedData]()
 
   
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,8 +28,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         firebaseVerileriAl()
         
+        setupNavImage()
+        
        }
     
+    private func setupNavImage(){
+            let imageView = UIImageView(image: UIImage(named: "saydamLogo"))
+            imageView.contentMode = .scaleAspectFit
+            imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            imageView.widthAnchor.constraint(equalToConstant: 113).isActive = true
+            self.navigationItem.titleView = imageView
+        }
+
     
     func firebaseVerileriAl() {
         let firestoreDatabase = Firestore.firestore()
@@ -126,5 +135,4 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 }
-
 
