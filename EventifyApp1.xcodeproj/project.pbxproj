@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1814FF9D2C5CCFD300A3DDCC /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FF9C2C5CCFD300A3DDCC /* FirebaseAnalyticsOnDeviceConversion */; };
+		1814FF9F2C5CCFD300A3DDCC /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FF9E2C5CCFD300A3DDCC /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		1814FFA12C5CCFD300A3DDCC /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFA02C5CCFD300A3DDCC /* FirebaseAppCheck */; };
+		1814FFA32C5CCFD300A3DDCC /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFA22C5CCFD300A3DDCC /* FirebaseAppDistribution-Beta */; };
+		1814FFA52C5CCFD300A3DDCC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFA42C5CCFD300A3DDCC /* FirebaseAuth */; };
+		1814FFA72C5CCFD300A3DDCC /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFA62C5CCFD300A3DDCC /* FirebaseAuthCombine-Community */; };
+		1814FFA92C5CCFD300A3DDCC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFA82C5CCFD300A3DDCC /* FirebaseCrashlytics */; };
+		1814FFAB2C5CCFD300A3DDCC /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFAA2C5CCFD300A3DDCC /* FirebaseDatabase */; };
+		1814FFAD2C5CCFD300A3DDCC /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFAC2C5CCFD300A3DDCC /* FirebaseDynamicLinks */; };
+		1814FFAF2C5CCFD300A3DDCC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFAE2C5CCFD300A3DDCC /* FirebaseFirestore */; };
+		1814FFB12C5CCFD300A3DDCC /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFB02C5CCFD300A3DDCC /* FirebaseFirestoreCombine-Community */; };
+		1814FFB32C5CCFD300A3DDCC /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFB22C5CCFD300A3DDCC /* FirebaseFunctions */; };
+		1814FFB52C5CCFD300A3DDCC /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFB42C5CCFD300A3DDCC /* FirebaseFunctionsCombine-Community */; };
+		1814FFB72C5CCFD300A3DDCC /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFB62C5CCFD300A3DDCC /* FirebaseInAppMessaging-Beta */; };
+		1814FFB92C5CCFD300A3DDCC /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFB82C5CCFD300A3DDCC /* FirebaseInstallations */; };
+		1814FFBB2C5CCFD300A3DDCC /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFBA2C5CCFD300A3DDCC /* FirebaseMLModelDownloader */; };
+		1814FFBD2C5CCFD300A3DDCC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFBC2C5CCFD300A3DDCC /* FirebaseMessaging */; };
+		1814FFBF2C5CCFD300A3DDCC /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFBE2C5CCFD300A3DDCC /* FirebasePerformance */; };
+		1814FFC12C5CCFD300A3DDCC /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFC02C5CCFD300A3DDCC /* FirebaseRemoteConfig */; };
+		1814FFC32C5CCFD300A3DDCC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFC22C5CCFD300A3DDCC /* FirebaseStorage */; };
+		1814FFC52C5CCFD300A3DDCC /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFC42C5CCFD300A3DDCC /* FirebaseStorageCombine-Community */; };
+		1814FFC72C5CCFD300A3DDCC /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFC62C5CCFD300A3DDCC /* FirebaseVertexAI-Preview */; };
+		1814FFCA2C5CD29B00A3DDCC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFC92C5CD29B00A3DDCC /* SDWebImage */; };
+		1814FFCC2C5CD29B00A3DDCC /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1814FFCB2C5CD29B00A3DDCC /* SDWebImageMapKit */; };
+		183EB4122BC46F1100440CDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183EB4112BC46F1100440CDA /* LaunchScreen.storyboard */; };
 		1857C4892BB863E5005C73EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C4882BB863E5005C73EB /* FeedViewController.swift */; };
 		1857C48B2BB8640C005C73EB /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C48A2BB8640C005C73EB /* UploadViewController.swift */; };
 		1857C48D2BB8642B005C73EB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C48C2BB8642B005C73EB /* SettingsViewController.swift */; };
