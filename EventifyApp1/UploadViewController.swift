@@ -1,10 +1,12 @@
 import UIKit
 import Photos
 import PhotosUI
-import FirebaseCore
-import FirebaseStorage
 import FirebaseFirestore
+import FirebaseCoreInternal
 import FirebaseAuth
+import FirebaseStorage
+
+
 let uuid = UUID().uuidString
 class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UINavigationBarDelegate {
     

@@ -11,9 +11,11 @@ struct FeedData {
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+   
+    @IBOutlet weak var feedTableView: UITableView!
+    
     var feedDataArray = [FeedData]()
 
-    @IBOutlet weak var feedTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,53 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         firebaseVerileriAl()
         feedTableView.delegate = self
         feedTableView.dataSource = self
+        
+        setupHeaderCell()
+            
     }
+    
+    private func setupHeaderCell() {
+            // Header hücresini oluştur
+            let headerCell = UITableViewCell()
+            headerCell.contentView.backgroundColor = .clear
+            
+            // Logo için bir UIImageView oluştur
+            let logoImageView = UIImageView(image: UIImage(named: "saydamLogoFoto")) // Burada logo ismini uygun şekilde değiştirin
+            logoImageView.contentMode = .scaleAspectFit
+            logoImageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            // Header hücresine logo ekle
+            headerCell.contentView.addSubview(logoImageView)
+            
+            // Auto Layout Constraints ayarla
+            NSLayoutConstraint.activate([
+                logoImageView.topAnchor.constraint(equalTo: headerCell.contentView.topAnchor),
+                logoImageView.leadingAnchor.constraint(equalTo: headerCell.contentView.leadingAnchor),
+                logoImageView.trailingAnchor.constraint(equalTo: headerCell.contentView.trailingAnchor),
+                logoImageView.bottomAnchor.constraint(equalTo: headerCell.contentView.bottomAnchor)
+            ])
+            
+            // Header hücresinin yüksekliğini ayarla
+            let headerHeight: CGFloat = 65
+            headerCell.frame = CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight)
+            feedTableView.tableHeaderView = headerCell
+        }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return feedDataArray.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+            let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
+            let feedData = feedDataArray[indexPath.row]
+            cell.YorumText.text = feedData.yorum
+            cell.feedUsernameField.text = feedData.username
+            cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
+            return cell
+        
+    }
+    
 
     func firebaseVerileriAl() {
         let firestoreDatabase = Firestore.firestore()
@@ -64,22 +112,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("Belge bulunamadı.")
             }
         }
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feedDataArray.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-            let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-            let feedData = feedDataArray[indexPath.row]
-            cell.YorumText.text = feedData.yorum
-            cell.feedUsernameField.text = feedData.username
-            cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
-            return cell
-        
-        
     }
     
     func hataMesaji(title: String, message: String) {
