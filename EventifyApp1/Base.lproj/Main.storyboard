@@ -51,7 +51,7 @@
                                     <segue destination="hLu-5P-aLO" kind="presentation" identifier="signupToFeedVC" modalPresentationStyle="fullScreen" id="6Ko-1e-P8f"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Saydam zeminde orijinal" translatesAutoresizingMaskIntoConstraints="NO" id="GtE-du-eGH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saydamLogoFoto" translatesAutoresizingMaskIntoConstraints="NO" id="GtE-du-eGH">
                                 <rect key="frame" x="83.666666666666686" y="166" width="226" height="93"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="93" id="Vxg-6s-wWO"/>
@@ -140,7 +140,7 @@
                                     <segue destination="4UZ-ak-dzd" kind="show" identifier="toSignupVC" id="kCs-eG-T7E"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Saydam zeminde orijinal" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-5W-lyL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="saydamLogoFoto" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-5W-lyL">
                                 <rect key="frame" x="78" y="143" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -166,8 +166,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tr5-cB-s8Y">
-                                <rect key="frame" x="140.66666666666666" y="403" width="112" height="46.333333333333314"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tr5-cB-s8Y">
+                                <rect key="frame" x="140" y="735" width="112" height="46.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log out">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="27"/>
@@ -177,16 +177,24 @@
                                     <action selector="logoutTiklandi:" destination="pHO-ZZ-Yk4" eventType="touchUpInside" id="bYO-xs-nQz"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5aI-7b-fj0">
+                                <rect key="frame" x="30" y="86" width="87" height="83"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5a1-is-XJd"/>
                         <color key="backgroundColor" red="0.85098040100000005" green="0.92549020049999997" blue="0.57647061349999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="tr5-cB-s8Y" firstAttribute="centerX" secondItem="sxj-tA-PjK" secondAttribute="centerX" id="1uZ-P3-tte"/>
-                            <constraint firstItem="tr5-cB-s8Y" firstAttribute="centerY" secondItem="sxj-tA-PjK" secondAttribute="centerY" id="gBB-Vi-0TQ"/>
+                            <constraint firstItem="5aI-7b-fj0" firstAttribute="leading" secondItem="5a1-is-XJd" secondAttribute="leading" constant="30" id="1R6-Gb-Adj"/>
+                            <constraint firstItem="tr5-cB-s8Y" firstAttribute="leading" secondItem="5a1-is-XJd" secondAttribute="leading" constant="140" id="Gux-4f-vlF"/>
+                            <constraint firstItem="tr5-cB-s8Y" firstAttribute="centerX" secondItem="sxj-tA-PjK" secondAttribute="centerX" id="cUe-eL-riJ"/>
+                            <constraint firstItem="5a1-is-XJd" firstAttribute="trailing" secondItem="5aI-7b-fj0" secondAttribute="trailing" constant="276" id="doN-wI-ZfG"/>
+                            <constraint firstItem="tr5-cB-s8Y" firstAttribute="top" secondItem="5a1-is-XJd" secondAttribute="top" constant="735" id="kob-93-JGe"/>
+                            <constraint firstItem="5aI-7b-fj0" firstAttribute="top" secondItem="5a1-is-XJd" secondAttribute="top" constant="86" id="mIN-E3-RUk"/>
+                            <constraint firstItem="5a1-is-XJd" firstAttribute="bottom" secondItem="5aI-7b-fj0" secondAttribute="bottom" constant="634" id="xxg-WF-qaw"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="settingsIcon" id="s2n-NV-anG">
-                        <color key="badgeColor" red="0.090196087960000004" green="0.098039209840000002" blue="0.109803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <tabBarItem key="tabBarItem" title="" image="profileIcon" id="s2n-NV-anG">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="toFirstViewController" modalPresentationStyle="overFullScreen" id="5Y8-zM-phf"/>
@@ -282,7 +290,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Kullanıcı yorumu" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KNu-s5-aLL">
-                                                    <rect key="frame" x="49.666666666666629" y="259.66666666666663" width="294" height="33.333333333333371"/>
+                                                    <rect key="frame" x="49.666666666666629" y="267.66666666666663" width="294" height="33.333333333333371"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33.333333333333343" id="1NR-aS-lyT"/>
                                                     </constraints>
@@ -290,7 +298,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPh-3h-u3O">
-                                                    <rect key="frame" x="29" y="0.33333333333337123" width="226" height="34.333333333333371"/>
+                                                    <rect key="frame" x="83" y="8.3333333333333712" width="226" height="34.333333333333371"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="226" id="iIz-g3-Gaa"/>
                                                         <constraint firstAttribute="height" constant="34.333333333333343" id="nbW-ix-exT"/>
@@ -300,23 +308,41 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9D1-ai-u2B">
-                                                    <rect key="frame" x="49.666666666666629" y="48.666666666666629" width="294" height="190"/>
+                                                    <rect key="frame" x="59" y="76" width="275" height="174"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="190" id="F58-nc-Pca"/>
                                                         <constraint firstAttribute="width" constant="294" id="GdQ-Lu-sES"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MX9-IY-te7">
+                                                    <rect key="frame" x="-86" y="11" width="41" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="41" id="cKm-mM-IR3"/>
+                                                        <constraint firstAttribute="height" constant="42" id="vw6-w8-6zu"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ekle" translatesAutoresizingMaskIntoConstraints="NO" id="IC9-ra-SCk">
+                                                    <rect key="frame" x="26" y="11" width="50" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="46" id="6m7-xI-SND"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.85098040100000005" green="0.92549020049999997" blue="0.57647061349999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="9D1-ai-u2B" firstAttribute="top" secondItem="pPh-3h-u3O" secondAttribute="bottom" constant="0.99999999999999645" id="2Ma-Bk-GIb"/>
+                                                <constraint firstItem="MX9-IY-te7" firstAttribute="top" secondItem="Vt6-Z7-ciq" secondAttribute="topMargin" id="6Vu-wh-BwR"/>
+                                                <constraint firstItem="9D1-ai-u2B" firstAttribute="top" secondItem="IC9-ra-SCk" secondAttribute="bottom" constant="10.666666666666629" id="6je-mv-C5S"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="KNu-s5-aLL" secondAttribute="bottom" constant="17" id="8fi-BZ-epU"/>
                                                 <constraint firstItem="KNu-s5-aLL" firstAttribute="top" secondItem="9D1-ai-u2B" secondAttribute="bottom" constant="20.999999999999943" id="8hq-Ey-E28"/>
                                                 <constraint firstItem="pPh-3h-u3O" firstAttribute="top" secondItem="Vt6-Z7-ciq" secondAttribute="topMargin" constant="-15.666666666666668" id="DKx-B0-Vb5"/>
+                                                <constraint firstItem="IC9-ra-SCk" firstAttribute="leading" secondItem="Vt6-Z7-ciq" secondAttribute="leading" constant="28" id="Jlv-f5-Uyr"/>
                                                 <constraint firstItem="9D1-ai-u2B" firstAttribute="centerX" secondItem="KNu-s5-aLL" secondAttribute="centerX" id="Rn9-gp-NRp"/>
+                                                <constraint firstItem="IC9-ra-SCk" firstAttribute="top" secondItem="Vt6-Z7-ciq" secondAttribute="top" id="cb5-vj-jF5"/>
                                                 <constraint firstItem="9D1-ai-u2B" firstAttribute="leading" secondItem="KNu-s5-aLL" secondAttribute="leading" id="cfN-AA-kAj"/>
+                                                <constraint firstItem="IC9-ra-SCk" firstAttribute="leading" secondItem="MX9-IY-te7" secondAttribute="trailing" constant="73" id="eWR-Rn-ePO"/>
                                                 <constraint firstItem="9D1-ai-u2B" firstAttribute="centerX" secondItem="Vt6-Z7-ciq" secondAttribute="centerX" id="efz-BJ-m6y"/>
-                                                <constraint firstItem="pPh-3h-u3O" firstAttribute="leading" secondItem="Vt6-Z7-ciq" secondAttribute="leadingMargin" constant="9" id="gZA-Y3-D5T"/>
+                                                <constraint firstItem="pPh-3h-u3O" firstAttribute="leading" secondItem="IC9-ra-SCk" secondAttribute="trailing" constant="14" id="qfB-gJ-eFk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.85098040100000005" green="0.92549020049999997" blue="0.57647061349999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -375,13 +401,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Klf-vG-h0w"/>
+        <segue reference="6Ko-1e-P8f"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Saydam zeminde orijinal" width="3000" height="1528"/>
+        <image name="ekle" width="348" height="348"/>
         <image name="eklebutonu" width="512" height="512"/>
         <image name="homeIcon" width="36" height="36"/>
-        <image name="settingsIcon" width="36" height="36"/>
+        <image name="profileIcon" width="36" height="36"/>
+        <image name="saydamLogoFoto" width="3000" height="1528"/>
         <image name="uploadIcon" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -10,50 +10,63 @@ struct FeedData {
 }
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-   
+    
+    
     @IBOutlet weak var feedTableView: UITableView!
     
     var feedDataArray = [FeedData]()
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         firebaseVerileriAl()
         feedTableView.delegate = self
         feedTableView.dataSource = self
         
         setupHeaderCell()
-            
+        
     }
     
     private func setupHeaderCell() {
-            // Header hücresini oluştur
-            let headerCell = UITableViewCell()
-            headerCell.contentView.backgroundColor = .clear
-            
-            // Logo için bir UIImageView oluştur
-            let logoImageView = UIImageView(image: UIImage(named: "saydamLogoFoto")) // Burada logo ismini uygun şekilde değiştirin
-            logoImageView.contentMode = .scaleAspectFit
-            logoImageView.translatesAutoresizingMaskIntoConstraints = false
-            
-            // Header hücresine logo ekle
-            headerCell.contentView.addSubview(logoImageView)
-            
-            // Auto Layout Constraints ayarla
-            NSLayoutConstraint.activate([
-                logoImageView.topAnchor.constraint(equalTo: headerCell.contentView.topAnchor),
-                logoImageView.leadingAnchor.constraint(equalTo: headerCell.contentView.leadingAnchor),
-                logoImageView.trailingAnchor.constraint(equalTo: headerCell.contentView.trailingAnchor),
-                logoImageView.bottomAnchor.constraint(equalTo: headerCell.contentView.bottomAnchor)
-            ])
-            
-            // Header hücresinin yüksekliğini ayarla
-            let headerHeight: CGFloat = 65
-            headerCell.frame = CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight)
-            feedTableView.tableHeaderView = headerCell
-        }
+        let headerCell = UITableViewCell()
+        headerCell.contentView.backgroundColor = .clear
+        
+        // Logo ImageView
+        let logoImageView = UIImageView(image: UIImage(named: "saydamLogoFoto"))
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Search Button
+        let searchButton = UIButton(type: .custom)
+        searchButton.setImage(UIImage(named: "searchIcon"), for: .normal)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        headerCell.contentView.addSubview(logoImageView)
+        headerCell.contentView.addSubview(searchButton)
+        
+        NSLayoutConstraint.activate([
+            // Logo constraints
+            logoImageView.centerYAnchor.constraint(equalTo: headerCell.contentView.centerYAnchor),
+            logoImageView.centerXAnchor.constraint(equalTo: headerCell.contentView.centerXAnchor, constant: -1), // Centered with an offset to the left
+            logoImageView.widthAnchor.constraint(equalToConstant: 100), // Adjust width as needed
+            logoImageView.heightAnchor.constraint(equalToConstant: 55), // Adjust height as needed
+
+            // Search button constraints
+            searchButton.centerYAnchor.constraint(equalTo: headerCell.contentView.centerYAnchor),
+            searchButton.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8), // 8 points between logo and button
+            searchButton.trailingAnchor.constraint(equalTo: headerCell.contentView.trailingAnchor, constant: -10), // 10 points from right edge
+            searchButton.widthAnchor.constraint(equalToConstant: 27), // Adjust width as needed
+            searchButton.heightAnchor.constraint(equalToConstant: 27) // Adjust height as needed
+        ])
+        
+        // Header cell height
+        let headerHeight: CGFloat = 65
+        headerCell.frame = CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight)
+        feedTableView.tableHeaderView = headerCell
+    }
+
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedDataArray.count
@@ -67,7 +80,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.feedUsernameField.text = feedData.username
             cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
             return cell
-        
+        //
+
     }
     
 
