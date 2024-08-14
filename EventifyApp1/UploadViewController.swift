@@ -10,6 +10,7 @@ import FirebaseStorage
 let uuid = UUID().uuidString
 class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UINavigationBarDelegate {
     
+
     @IBOutlet weak var yorumTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -17,9 +18,11 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         imageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gorselSec) )
         imageView.addGestureRecognizer(gestureRecognizer)
+        
     }
     
     @objc func gorselSec(){
@@ -48,6 +51,12 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         dismiss(animated: true)
         
     }
+    
+    @IBAction func konumSecButton(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "toMapVC" , sender: nil)
+    }
+    
     
     @IBAction func imageUploadTiklandi(_ sender: Any){
         

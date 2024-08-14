@@ -28,6 +28,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    
     private func setupHeaderCell() {
         let headerCell = UITableViewCell()
         headerCell.contentView.backgroundColor = .clear
