@@ -2,29 +2,24 @@
 //  FeedCell.swift
 //  EventifyApp1
 //
-//  Created by Selin Şeker on 31.03.2024.
+//  Created by Selin Şeker on 13.09.2024.
 //
 
 import UIKit
 
 class FeedCell: UITableViewCell {
 
-    
-    @IBOutlet weak var feedUsernameField: UILabel!
-    @IBOutlet weak var YorumText: UITextField!
-    @IBOutlet weak var postImageView: UIImageView!
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    @IBOutlet weak var etkinlikAdiField: UILabel!
+    @IBOutlet weak var etkinlikTarihiField: UILabel!
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var YorumText: UILabel!
+    @IBOutlet weak var locationField: UILabel!
+    @IBOutlet weak var feedUsernameField: UILabel!
+    @IBOutlet weak var profilePicView: UIImageView!
+    @IBOutlet weak var view: UIView!
 }

@@ -1,3 +1,10 @@
+//
+//  UploadViewController.swift
+//  EventifyApp1
+//
+//  Created by Selin Şeker on 21.09.2024.
+//
+
 import UIKit
 import Photos
 import PhotosUI
@@ -10,20 +17,34 @@ import FirebaseStorage
 let uuid = UUID().uuidString
 class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UINavigationBarDelegate {
     
-
+    
+    
+    @IBOutlet weak var segmentedControlBar: UISegmentedControl!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var etkinlikAdiField: UITextField!
     @IBOutlet weak var yorumTextField: UITextField!
+    
     @IBOutlet weak var imageView: UIImageView!
-    
-    
+   
+    @IBOutlet weak var uploadButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         imageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gorselSec) )
         imageView.addGestureRecognizer(gestureRecognizer)
         
+        uploadButton.layer.cornerRadius = 10
+        uploadButton.layer.masksToBounds = true
+        
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
     }
+ 
+    @IBAction func konumSecButton(_ sender: Any) {
+        performSegue(withIdentifier: "toMapVC" , sender: nil)
+    }
+    
     
     @objc func gorselSec(){
         var config = PHPickerConfiguration()
@@ -52,10 +73,6 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         
     }
     
-    @IBAction func konumSecButton(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "toMapVC" , sender: nil)
-    }
     
     
     @IBAction func imageUploadTiklandi(_ sender: Any){
@@ -81,7 +98,12 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                                     
                                     let uid = Auth.auth().currentUser?.uid
                                     
-                                    let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,"email": Auth.auth().currentUser!.email!,"tarih": FieldValue.serverTimestamp(), "uid": uid ?? ""]
+                                    let firestorePost = ["gorselurl": imageUrl, "yorum": self.yorumTextField.text!,
+                                                         "etkinlikAdi": self.etkinlikAdiField.text! ,
+                                                         "etkinlikTarihi": self.datePicker.date,
+                                                         "email": Auth.auth().currentUser!.email!,
+                                                         "tarih": FieldValue.serverTimestamp(),
+                                                         "uid": uid ?? ""]
 
                                     
                                     firestoreDatabase.collection("Post").addDocument(data: firestorePost) { error in

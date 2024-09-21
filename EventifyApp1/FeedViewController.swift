@@ -7,11 +7,14 @@ struct FeedData {
     var username: String
     var yorum: String
     var gorselUrl: String
+    var etkinlikAdi: String
+    var etkinlikTarihi: String
 }
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+
     @IBOutlet weak var feedTableView: UITableView!
     
     var feedDataArray = [FeedData]()
@@ -20,54 +23,59 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firebaseVerileriAl()
         feedTableView.delegate = self
         feedTableView.dataSource = self
         
+        self.feedTableView.register(UINib.init(nibName: "FeedCell", bundle: .main), forCellReuseIdentifier: "FeedCell")
+        
+        firebaseVerileriAl()
+
+        feedTableView.rowHeight = 315
+        
         setupHeaderCell()
         
+       
     }
-    
     
     private func setupHeaderCell() {
-        let headerCell = UITableViewCell()
-        headerCell.contentView.backgroundColor = .clear
-        
-        // Logo ImageView
-        let logoImageView = UIImageView(image: UIImage(named: "saydamLogoFoto"))
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Search Button
-        let searchButton = UIButton(type: .custom)
-        searchButton.setImage(UIImage(named: "searchIcon"), for: .normal)
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        headerCell.contentView.addSubview(logoImageView)
-        headerCell.contentView.addSubview(searchButton)
-        
-        NSLayoutConstraint.activate([
-            // Logo constraints
-            logoImageView.centerYAnchor.constraint(equalTo: headerCell.contentView.centerYAnchor),
-            logoImageView.centerXAnchor.constraint(equalTo: headerCell.contentView.centerXAnchor, constant: -1), // Centered with an offset to the left
-            logoImageView.widthAnchor.constraint(equalToConstant: 100), // Adjust width as needed
-            logoImageView.heightAnchor.constraint(equalToConstant: 55), // Adjust height as needed
+           let headerCell = UITableViewCell()
+           headerCell.contentView.backgroundColor = .clear
+           
+           // Logo ImageView
+           let logoImageView = UIImageView(image: UIImage(named: "saydamLogoFoto"))
+           logoImageView.contentMode = .scaleAspectFit
+           logoImageView.translatesAutoresizingMaskIntoConstraints = false
+           
+           // Search Button
+           let searchButton = UIButton(type: .custom)
+           searchButton.setImage(UIImage(named: "searchIcon"), for: .normal)
+           searchButton.translatesAutoresizingMaskIntoConstraints = false
+           
+           headerCell.contentView.addSubview(logoImageView)
+           headerCell.contentView.addSubview(searchButton)
+           
+           NSLayoutConstraint.activate([
+               // Logo constraints
+               logoImageView.centerYAnchor.constraint(equalTo: headerCell.contentView.centerYAnchor),
+               logoImageView.centerXAnchor.constraint(equalTo: headerCell.contentView.centerXAnchor, constant: -1), // Centered with an offset to the left
+               logoImageView.widthAnchor.constraint(equalToConstant: 100), // Adjust width as needed
+               logoImageView.heightAnchor.constraint(equalToConstant: 55), // Adjust height as needed
 
-            // Search button constraints
-            searchButton.centerYAnchor.constraint(equalTo: headerCell.contentView.centerYAnchor),
-            searchButton.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8), // 8 points between logo and button
-            searchButton.trailingAnchor.constraint(equalTo: headerCell.contentView.trailingAnchor, constant: -10), // 10 points from right edge
-            searchButton.widthAnchor.constraint(equalToConstant: 27), // Adjust width as needed
-            searchButton.heightAnchor.constraint(equalToConstant: 27) // Adjust height as needed
-        ])
-        
-        // Header cell height
-        let headerHeight: CGFloat = 65
-        headerCell.frame = CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight)
-        feedTableView.tableHeaderView = headerCell
-    }
+               // Search button constraints
+               searchButton.centerYAnchor.constraint(equalTo: headerCell.contentView.centerYAnchor),
+               searchButton.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8), // 8 points between logo and button
+               searchButton.trailingAnchor.constraint(equalTo: headerCell.contentView.trailingAnchor, constant: -10), // 10 points from right edge
+               searchButton.widthAnchor.constraint(equalToConstant: 27), // Adjust width as needed
+               searchButton.heightAnchor.constraint(equalToConstant: 27) // Adjust height as needed
+           ])
+           
+           // Header cell height
+           let headerHeight: CGFloat = 65
+           headerCell.frame = CGRect(x: 0, y: 0, width: feedTableView.frame.width, height: headerHeight)
+           feedTableView.tableHeaderView = headerCell
+       }
 
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedDataArray.count
@@ -75,13 +83,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            let cell = feedTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-            let feedData = feedDataArray[indexPath.row]
-            cell.YorumText.text = feedData.yorum
-            cell.feedUsernameField.text = feedData.username
-            cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
-            return cell
-        //
+        
+        let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        let feedData = feedDataArray[indexPath.row]
+        cell.YorumText.text = feedData.yorum
+        cell.feedUsernameField.text = feedData.username
+        cell.etkinlikAdiField.text = feedData.etkinlikAdi
+        cell.etkinlikTarihiField.text = feedData.etkinlikTarihi
+        cell.postImageView.sd_setImage(with: URL(string: feedData.gorselUrl))
+        
+        cell.view.layer.cornerRadius = 20
+        cell.view.clipsToBounds = true
+        
+        cell.profilePicView.layer.cornerRadius = 20
+        cell.profilePicView.clipsToBounds = true
+        
+        cell.selectionStyle = .none
+        
+        return cell
+        
 
     }
     
@@ -98,15 +118,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 for document in snapshot.documents {
                     if let gorselurl = document.get("gorselurl") as? String,
                        let yorum = document.get("yorum") as? String,
+                       let etkinlikAdi = document.get("etkinlikAdi") as? String,
+                       let etkinlikTarihi = document.get("etkinlikTarihi") as? String,
                        let uid = document.get("uid") as? String {
-                       self.getUsernameAndAddToFeedData(uid: uid, gorselurl: gorselurl, yorum: yorum)
+                        self.getUsernameAndAddToFeedData(uid: uid, gorselurl: gorselurl, yorum: yorum, etkinlikAdi: etkinlikAdi, etkinlikTarihi: etkinlikTarihi)
                     }
                 }
             }
         }
     }
 
-    func getUsernameAndAddToFeedData(uid: String, gorselurl: String, yorum: String) {
+    func getUsernameAndAddToFeedData(uid: String, gorselurl: String, yorum: String, etkinlikAdi: String, etkinlikTarihi: String) {
         let firestoreDatabase = Firestore.firestore()
 
         firestoreDatabase.collection("Users").document(uid).getDocument { document, error in
@@ -117,7 +139,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             if let document = document, document.exists {
                 if let username = document.get("username") as? String {
-                    let feedData = FeedData(username: username, yorum: yorum, gorselUrl: gorselurl)
+                    let feedData = FeedData(username: username, yorum: yorum, gorselUrl: gorselurl, etkinlikAdi: etkinlikAdi, etkinlikTarihi: etkinlikTarihi)
                     self.feedDataArray.append(feedData)
                     DispatchQueue.main.async {
                         self.feedTableView.reloadData()

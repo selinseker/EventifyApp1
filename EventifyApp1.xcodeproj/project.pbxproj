@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18467AF02C5FF9C3003FBB27 /* GloriaHallelujah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18467AED2C5FF9C3003FBB27 /* GloriaHallelujah-Regular.ttf */; };
-		18467AF12C5FF9C3003FBB27 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 18467AEE2C5FF9C3003FBB27 /* OFL.txt */; };
 		18467AF52C6CF446003FBB27 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18467AF42C6CF446003FBB27 /* MapVC.swift */; };
 		1857C4892BB863E5005C73EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C4882BB863E5005C73EB /* FeedViewController.swift */; };
-		1857C48B2BB8640C005C73EB /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C48A2BB8640C005C73EB /* UploadViewController.swift */; };
 		1857C48D2BB8642B005C73EB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857C48C2BB8642B005C73EB /* SettingsViewController.swift */; };
 		1860B62B2BB70EE4002D4784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1860B62A2BB70EE4002D4784 /* GoogleService-Info.plist */; };
 		186129B72BBC269A00CC4DA7 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186129B62BBC269A00CC4DA7 /* SignupVC.swift */; };
-		18DE0E8B2BB9FCA400DA185A /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE0E8A2BB9FCA400DA185A /* FeedCell.swift */; };
+		18A90FE22C9F2842008C7097 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A90FE12C9F2842008C7097 /* UploadViewController.swift */; };
+		18D1ABAE2C94CB120058E272 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1ABAC2C94CB120058E272 /* FeedCell.swift */; };
+		18D1ABAF2C94CB120058E272 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1ABAD2C94CB120058E272 /* FeedCell.xib */; };
 		18F1639E2BB4B92500B7CEC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1639D2BB4B92500B7CEC8 /* AppDelegate.swift */; };
 		18F163A02BB4B92500B7CEC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1639F2BB4B92500B7CEC8 /* SceneDelegate.swift */; };
 		18F163A22BB4B92500B7CEC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F163A12BB4B92500B7CEC8 /* ViewController.swift */; };
@@ -51,15 +50,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18467AED2C5FF9C3003FBB27 /* GloriaHallelujah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GloriaHallelujah-Regular.ttf"; sourceTree = "<group>"; };
-		18467AEE2C5FF9C3003FBB27 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		18467AF42C6CF446003FBB27 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		1857C4882BB863E5005C73EB /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		1857C48A2BB8640C005C73EB /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		1857C48C2BB8642B005C73EB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1860B62A2BB70EE4002D4784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		186129B62BBC269A00CC4DA7 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
-		18DE0E8A2BB9FCA400DA185A /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		18A90FE12C9F2842008C7097 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		18D1ABAC2C94CB120058E272 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		18D1ABAD2C94CB120058E272 /* FeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		18F1639A2BB4B92500B7CEC8 /* EventifyApp1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventifyApp1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F1639D2BB4B92500B7CEC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F1639F2BB4B92500B7CEC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,15 +105,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18467AEF2C5FF9C3003FBB27 /* Gloria_Hallelujah */ = {
-			isa = PBXGroup;
-			children = (
-				18467AED2C5FF9C3003FBB27 /* GloriaHallelujah-Regular.ttf */,
-				18467AEE2C5FF9C3003FBB27 /* OFL.txt */,
-			);
-			path = Gloria_Hallelujah;
-			sourceTree = "<group>";
-		};
 		18F163912BB4B92500B7CEC8 = {
 			isa = PBXGroup;
 			children = (
@@ -140,12 +129,12 @@
 				18F163A12BB4B92500B7CEC8 /* ViewController.swift */,
 				186129B62BBC269A00CC4DA7 /* SignupVC.swift */,
 				1857C4882BB863E5005C73EB /* FeedViewController.swift */,
-				1857C48A2BB8640C005C73EB /* UploadViewController.swift */,
+				18A90FE12C9F2842008C7097 /* UploadViewController.swift */,
 				1857C48C2BB8642B005C73EB /* SettingsViewController.swift */,
-				18DE0E8A2BB9FCA400DA185A /* FeedCell.swift */,
 				18467AF42C6CF446003FBB27 /* MapVC.swift */,
+				18D1ABAC2C94CB120058E272 /* FeedCell.swift */,
+				18D1ABAD2C94CB120058E272 /* FeedCell.xib */,
 				18F163A32BB4B92500B7CEC8 /* Main.storyboard */,
-				18467AEF2C5FF9C3003FBB27 /* Gloria_Hallelujah */,
 				18F163A92BB4B92600B7CEC8 /* Assets.xcassets */,
 				18F163AB2BB4B92600B7CEC8 /* LaunchScreen.storyboard */,
 				18F163AE2BB4B92600B7CEC8 /* Info.plist */,
@@ -244,12 +233,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18467AF12C5FF9C3003FBB27 /* OFL.txt in Resources */,
-				18467AF02C5FF9C3003FBB27 /* GloriaHallelujah-Regular.ttf in Resources */,
 				18F163AD2BB4B92600B7CEC8 /* LaunchScreen.storyboard in Resources */,
 				1860B62B2BB70EE4002D4784 /* GoogleService-Info.plist in Resources */,
 				18F163AA2BB4B92600B7CEC8 /* Assets.xcassets in Resources */,
 				18F163A52BB4B92500B7CEC8 /* Main.storyboard in Resources */,
+				18D1ABAF2C94CB120058E272 /* FeedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,13 +249,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F163A22BB4B92500B7CEC8 /* ViewController.swift in Sources */,
-				1857C48B2BB8640C005C73EB /* UploadViewController.swift in Sources */,
+				18A90FE22C9F2842008C7097 /* UploadViewController.swift in Sources */,
+				18D1ABAE2C94CB120058E272 /* FeedCell.swift in Sources */,
 				1857C48D2BB8642B005C73EB /* SettingsViewController.swift in Sources */,
 				186129B72BBC269A00CC4DA7 /* SignupVC.swift in Sources */,
 				18F163A82BB4B92500B7CEC8 /* EventifyApp1.xcdatamodeld in Sources */,
 				18467AF52C6CF446003FBB27 /* MapVC.swift in Sources */,
 				1857C4892BB863E5005C73EB /* FeedViewController.swift in Sources */,
-				18DE0E8B2BB9FCA400DA185A /* FeedCell.swift in Sources */,
 				18F1639E2BB4B92500B7CEC8 /* AppDelegate.swift in Sources */,
 				18F163A02BB4B92500B7CEC8 /* SceneDelegate.swift in Sources */,
 			);
